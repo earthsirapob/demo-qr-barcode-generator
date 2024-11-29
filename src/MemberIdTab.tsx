@@ -11,7 +11,7 @@ const MemberIdTab: React.FC = () => {
         bwipjs.toCanvas(canvasRef.current, {
           bcid: 'qrcode', // QR Code type
           text: memberId.padStart(9, '0'), // Pad member ID to 9 digits
-          scale: 6,
+          scale: 4,
           includetext: false,
         })
       } catch (err) {
@@ -41,10 +41,12 @@ const MemberIdTab: React.FC = () => {
       {memberId && (
         <>
           <h2>Member ID: {memberId.padStart(9, '0')}</h2>
-          <canvas
-            ref={canvasRef}
-            style={{ width: '100%', height: 'auto', display: 'block' }}
-          />
+          <div style={{ width: '100%', maxWidth: '400px', margin: '0 auto' }}>
+            <canvas
+              ref={canvasRef}
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
         </>
       )}
     </div>
