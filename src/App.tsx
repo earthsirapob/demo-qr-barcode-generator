@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import MemberIdTab from './MemberIdTab'
+import CouponCodeTab from './CouponCodeTab'
 
-function App() {
+const App: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'memberId' | 'couponCode'>(
+    'memberId'
+  )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <h1>Member ID / Coupon Code Generator</h1>
+      {/* Main Tabs */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginBottom: '20px',
+        }}
+      >
+        <button
+          onClick={() => setActiveTab('memberId')}
+          style={{
+            padding: '10px 20px',
+            marginRight: '10px',
+            backgroundColor: activeTab === 'memberId' ? '#007BFF' : '#f0f0f0',
+            color: activeTab === 'memberId' ? '#fff' : '#000',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Member ID
+        </button>
+        <button
+          onClick={() => setActiveTab('couponCode')}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: activeTab === 'couponCode' ? '#007BFF' : '#f0f0f0',
+            color: activeTab === 'couponCode' ? '#fff' : '#000',
+            border: '1px solid #ccc',
+            borderRadius: '5px',
+          }}
+        >
+          Coupon Code
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      {activeTab === 'memberId' && <MemberIdTab />}
+      {activeTab === 'couponCode' && <CouponCodeTab />}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
